@@ -1,0 +1,18 @@
+<div class="col-md-6 offset-md-3 mt-5">
+    <!-- <tr *ngFor="let item of questionList"> -->
+      <div class="card" *ngIf="questions != null">
+        <!-- <h4 class="card-header">Time Left: <countdown-timer style="color:black;padding:10px;font-family:Roboto;" [end]="myDate"></countdown-timer></h4> -->
+      </div>
+      <div class="card" *ngFor="let item of nos" style="margin:3px;">
+          <h4 class="card-header"> {{item | json}}</h4>
+          <div class="card-body" *ngFor="let items of questions" >  
+            <div >
+              <label *ngIf="checkIf(item == items.pqNos)">{{items.pqQuestion}}</label>
+            </div>
+          </div>
+      </div>
+      <button class="btn btn-warning">
+          <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1" (click)="onSubmit()"></span>
+          Summary
+      </button>
+  </div> 

@@ -1,0 +1,28 @@
+<div class="col-md-6 offset-md-3 mt-5">
+   
+    <div class="card">
+        <h4 class="card-header">Participant List</h4>
+        <div class="card-body">
+            <table>
+                <tr>
+                    <td>Id</td>
+                    <td>Name</td>
+                    <td>Exam</td>
+                </tr>
+                <tr *ngFor="let item of candidateList">
+                    <td>{{item.clEnrollmentNo}}</td>
+                    <td>{{item.clName}}</td>
+                    <td> 
+                        <form [formGroup]="loginForm" (ngSubmit)="onSubmit(item.clEnrollmentNo)">
+                            <button  class="btn btn-primary">
+                                <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                                Start
+                            </button>
+                            <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+                        </form>
+                </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div> 

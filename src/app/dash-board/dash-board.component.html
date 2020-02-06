@@ -1,0 +1,30 @@
+<div class="col-md-6 offset-md-3 mt-5">
+   
+    <div class="card">
+        <h4 class="card-header">Start Your Practical and Theory Exam</h4>
+        <p class="card-header" *ngIf="auth.candidateID != null">Enrollment ID:<b>{{auth.candidateID}}</b></p>
+        <div class="card-body">
+            <p>
+                You can tell the directive how to handle queryParams. Available options are:
+
+'merge': merge the queryParams into the current queryParams
+'preserve': preserve the current queryParams
+default/'': use the queryParams only
+            </p>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <button class="btn btn-primary">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Theory
+                </button>
+                <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+            </form>
+            <form [formGroup]="loginForm" (ngSubmit)="onPractical()" style="margin-top: 4px;">
+                <button class="btn btn-dark">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Practical
+                </button>
+                <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+            </form>
+        </div>
+    </div>
+</div> 

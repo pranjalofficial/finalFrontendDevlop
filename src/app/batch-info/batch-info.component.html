@@ -1,0 +1,33 @@
+<div class="col-md-6 offset-md-3 mt-5">
+   
+    <div class="card">
+        <h4 class="card-header">Center and Assesser Info</h4>
+        <div class="card-body">
+            <table *ngIf="batchInfo != null">
+                <tr>
+                    <td>Center: </td>
+                    <td>{{batchInfo.centerName}}</td>
+                </tr>
+                <tr>
+                    <td>Assesser Name: </td>
+                    <td>{{batchInfo.asContactPerson}}</td>
+                </tr>
+                <tr>
+                    <td>Request Id: </td>
+                    <td>{{batchInfo.asId}}</td>
+                </tr>
+                <tr>
+                    <td>Batch Id: </td>
+                    <td>{{batchInfo.asSdmsbatchName}}</td>
+                </tr>
+            </table>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <button class="btn btn-primary">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Candidate List
+                </button>
+                <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+            </form>
+        </div>
+    </div>
+</div> 

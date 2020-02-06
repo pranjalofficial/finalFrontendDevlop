@@ -1,0 +1,37 @@
+<div class="col-md-6 offset-md-3 mt-5">
+    <!-- <tr *ngFor="let item of questionList"> -->
+      <div class="card">
+        <!-- <h4 class="card-header">Time Left: <countdown-timer style="color:black;padding:10px;font-family:Roboto;" [end]="myDate"></countdown-timer></h4> -->
+      </div>
+      <div class="card" *ngFor="let item of questions" style="margin:3px;">
+          <h4 class="card-header"> {{item.tqQuestion}}</h4>
+          <div class="card-body">  
+    <form action="/action_page.php">
+      <div class="form-check">
+        <label class="form-check-label" for="radio1">
+          <input type="radio" class="form-check-input" id="radio1" name="optradio" value="option1">{{item.tqOption1}}
+        </label>
+      </div>
+      <div class="form-check">
+        <label class="form-check-label" for="radio2">
+          <input type="radio" class="form-check-input" id="radio2" name="optradio" value="option2">{{item.tqOption2}}
+        </label>
+      </div>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input type="radio" class="form-check-input" >{{item.tqOption3}}
+        </label>
+      </div>
+      <div class="form-check">
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input" >{{item.tqOption4}}
+          </label>
+        </div>
+    </form>  
+          </div>
+      </div>
+      <button class="btn btn-warning">
+          <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1" (click)="onSubmit()"></span>
+          Summary
+      </button>
+  </div> 
