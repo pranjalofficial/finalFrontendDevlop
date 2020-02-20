@@ -1,37 +1,137 @@
-<div class="col-md-6 offset-md-3 mt-5">
+<!-- <div class="col-md-6 offset-md-3 mt-5"> -->
     <!-- <tr *ngFor="let item of questionList"> -->
-      <div class="card">
+      <!-- <div class="card"> -->
         <!-- <h4 class="card-header">Time Left: <countdown-timer style="color:black;padding:10px;font-family:Roboto;" [end]="myDate"></countdown-timer></h4> -->
-      </div>
+      <!-- </div>
       <div class="card" *ngFor="let item of questions" style="margin:3px;">
-          <h4 class="card-header"> {{item.tqQuestion}}</h4>
+          <h4 class="card-header" > {{item.tqQuestion}}</h4>
           <div class="card-body">  
-    <form action="/action_page.php">
+    <form #myForm="ngForm" (ngSubmit)="onSubmit(myForm.value)">
       <div class="form-check">
         <label class="form-check-label" for="radio1">
-          <input type="radio" class="form-check-input" id="radio1" name="optradio" value="option1">{{item.tqOption1}}
+          <input type="radio" class="form-check-input" id="radio1" name="optradio" value="item.tqOption1" (change)="onItemChange(item)" ngModel>{{item.tqOption1}}
         </label>
       </div>
       <div class="form-check">
         <label class="form-check-label" for="radio2">
-          <input type="radio" class="form-check-input" id="radio2" name="optradio" value="option2">{{item.tqOption2}}
+          <input type="radio" class="form-check-input" id="radio2" name="optradio" value="item.tqOption2" (change)="onItemChange(item)" ngModel>{{item.tqOption2}}
         </label>
       </div>
       <div class="form-check">
-        <label class="form-check-label">
-          <input type="radio" class="form-check-input" >{{item.tqOption3}}
+        <label class="form-check-label" for="radio3">
+          <input type="radio" class="form-check-input" id="radio3" name="optradio" value="item.tqOption3" (change)="onItemChange(item)" ngModel>{{item.tqOption3}}
         </label>
       </div>
       <div class="form-check">
-          <label class="form-check-label">
-            <input type="radio" class="form-check-input" >{{item.tqOption4}}
+          <label class="form-check-label" for="radio4">
+            <input type="radio" class="form-check-input" id="radio4" name="optradio" value="item.tqOption4" (change)="onItemChange(item)" ngModel>{{item.tqOption4}}
           </label>
         </div>
+             <button class="btn btn-primary" type="submit">
+          <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+          Submit
+      </button>
     </form>  
           </div>
       </div>
-      <button class="btn btn-warning">
-          <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1" (click)="onSubmit()"></span>
-          Summary
-      </button>
-  </div> 
+ 
+  </div>  -->
+
+  <div class='container-fluid'>  
+    <div class="row" style="padding: 20px;">  
+        <div class="col-sm-12 btn btn-success">  
+            Use Bootstrap carousel in Angular 8 Project  
+        </div>  
+    </div>  
+    <div class='col-12'>  
+        <ngb-carousel #mycarousel>  
+            <ng-template *ngFor="let item of questions" style="width: 50%;" ngbSlide>  
+              <div class="card"  style="margin:3px;background-color:black;color: white;">
+                <h4 class="card-header" > {{item.tqQuestion}}</h4>
+                <img src="https://lsscstorageacc.blob.core.windows.net/lsscstorage/Basic Closing Operator (G&G)Question 3.png?snapshot=2020-02-19T10:59:18.2904800Z" alt="Smiley face" height="42" width="42">
+                <div class="card-body"  class="list-group-item text-center d-inline-block" style="color: black;">  
+          <form>
+            <div class="form-check">
+              <label class="form-check-label" for="radio1">
+                <input type="radio" class="form-check-input" id="radio1" name="optradio" value="1" (change)="onItemChange(1,item)" ngModel>{{item.tqOption1}}
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label" for="radio2">
+                <input type="radio" class="form-check-input" id="radio2" name="optradio" value="2" (change)="onItemChange(2,item)" ngModel>{{item.tqOption2}}
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label" for="radio3">
+                <input type="radio" class="form-check-input" id="radio3" name="optradio" value="3" (change)="onItemChange(3,item)" ngModel>{{item.tqOption3}}
+              </label>
+            </div>
+            <div class="form-check">
+                <label class="form-check-label" for="radio4">
+                  <input type="radio" class="form-check-input" id="radio4" name="optradio" value="4" (change)="onItemChange(4,item)" ngModel>{{item.tqOption4}}
+                </label>
+              </div>
+          </form>  
+                </div>
+            </div>
+            <button class="btn btn-secondary" (click)="prevSlide()" id="prev" [disabled]="item.tqCode == 1">Previous</button>
+            <button class="btn btn-primary" (click)="nextSlide()" id="next" [disabled]="item.tqCode == 20" >Next</button>
+            <button class="btn btn-warning" (click)="openModal('custom-modal')" id="summary">Summary</button>
+            <button class="btn btn-info" (click)="submit()" id="submit">Submit</button>
+            <div class="col-sm-12 btn btn-warning" *ngIf="item.tqCode == 20">  
+              Please submit  
+          </div>  
+            </ng-template>  
+        </ngb-carousel>  
+
+    </div>  
+  
+</div>
+
+<jw-modal id="custom-modal">
+  <h1>Summary</h1>
+  <!-- <p>Home page text: <input type="text" [(ngModel)]="bodyText" /></p> -->
+  <button class="btn btn-secondary" *ngIf="answerIndex.q1 == 0">1</button>
+  <button class="btn btn-success" *ngIf="answerIndex.q1 == 1">1</button>
+  <button class="btn btn-secondary" *ngIf="answerIndex.q2 == 0">2</button>
+  <button class="btn btn-success" *ngIf="answerIndex.q2 == 1">2</button>
+  <button class="btn btn-secondary" *ngIf="answerIndex.q3 == 0">3</button>
+  <button class="btn btn-success" *ngIf="answerIndex.q3 == 1">3</button>
+  <button class="btn btn-secondary" *ngIf="answerIndex.q4 == 0">4</button>
+  <button class="btn btn-success" *ngIf="answerIndex.q4 == 1">4</button>
+  <button class="btn btn-secondary" *ngIf="answerIndex.q5 == 0">5</button>
+  <button class="btn btn-success" *ngIf="answerIndex.q5 == 1">5</button>
+  <button class="btn btn-secondary" *ngIf="answerIndex.q6 == 0">6</button>
+  <button class="btn btn-success" *ngIf="answerIndex.q6 == 1">6</button>
+  <button class="btn btn-secondary" *ngIf="answerIndex.q7 == 0">7</button>
+  <button class="btn btn-success" *ngIf="answerIndex.q7 == 1">7</button>
+  <button class="btn btn-secondary" *ngIf="answerIndex.q8 == 0">8</button>
+  <button class="btn btn-success" *ngIf="answerIndex.q8 == 1">8</button>
+  <button class="btn btn-secondary" *ngIf="answerIndex.q9 == 0">9</button>
+  <button class="btn btn-success" *ngIf="answerIndex.q9 == 1">9</button>
+  <button class="btn btn-secondary" *ngIf="answerIndex.q10 == 0">10</button>
+  <button class="btn btn-success" *ngIf="answerIndex.q10 == 1">10</button>
+  <button class="btn btn-secondary" *ngIf="answerIndex.q11 == 0">11</button>
+  <button class="btn btn-success" *ngIf="answerIndex.q11 == 1">11</button>
+  <button class="btn btn-secondary" *ngIf="answerIndex.q12 == 0">12</button>
+  <button class="btn btn-success" *ngIf="answerIndex.q12 == 1">12</button>
+  <button class="btn btn-secondary" *ngIf="answerIndex.q13 == 0">13</button>
+  <button class="btn btn-success" *ngIf="answerIndex.q13 == 1">13</button>
+  <button class="btn btn-secondary" *ngIf="answerIndex.q14 == 0">14</button>
+  <button class="btn btn-success" *ngIf="answerIndex.q14 == 1">14</button>
+  <button class="btn btn-secondary" *ngIf="answerIndex.q15 == 0">15</button>
+  <button class="btn btn-success" *ngIf="answerIndex.q15 == 1">15</button>
+  <button class="btn btn-secondary" *ngIf="answerIndex.q16 == 0">16</button>
+  <button class="btn btn-success" *ngIf="answerIndex.q16 == 1">16</button>
+  <button class="btn btn-secondary" *ngIf="answerIndex.q17 == 0">17</button>
+  <button class="btn btn-success" *ngIf="answerIndex.q17 == 1">17</button>
+  <button class="btn btn-secondary" *ngIf="answerIndex.q18 == 0">18</button>
+  <button class="btn btn-success" *ngIf="answerIndex.q18 == 1">18</button>
+  <button class="btn btn-secondary" *ngIf="answerIndex.q19 == 0">19</button>
+  <button class="btn btn-success" *ngIf="answerIndex.q19 == 1">19</button>
+  <button class="btn btn-secondary" *ngIf="answerIndex.q20 == 0">20</button>
+  <button class="btn btn-success" *ngIf="answerIndex.q20 == 1">20</button>
+  <div style="margin-top: 5px;">
+    <button class="btn btn-danger" (click)="closeModal('custom-modal');">Close</button>
+  </div>
+</jw-modal>

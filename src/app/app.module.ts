@@ -11,6 +11,11 @@ import { DashBoardComponent } from './dash-board/dash-board.component';
 import { TheoryExamComponent } from './theory-exam/theory-exam.component';
 import { PracticalExamComponent } from './practical-exam/practical-exam.component';
 import { HttpClientModule } from '@angular/common/http';
+import { LanguageSelectionComponent } from './language-selection/language-selection.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; 
+import { ModalModule } from './_modal';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -20,14 +25,18 @@ import { HttpClientModule } from '@angular/common/http';
     CandidateListComponent,
     DashBoardComponent,
     TheoryExamComponent,
-    PracticalExamComponent
+    PracticalExamComponent,
+    LanguageSelectionComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule,
+    ModalModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }) 
   ],
   providers: [],
   bootstrap: [AppComponent]

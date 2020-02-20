@@ -3,6 +3,9 @@ export interface IInformation{
      asContactPerson:string 
      asSdmsbatchName:string 
      centerName :string
-     asTheoryQuestionId :number
-     asPracticalQuestionId:number 
+     asQuestionBankID:string
+     asQuestionVersion:string
+     qvHindi:boolean
+     qvBangla:boolean
+     qvTamil:boolean
 }

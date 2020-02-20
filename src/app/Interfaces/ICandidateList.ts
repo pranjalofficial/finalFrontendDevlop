@@ -1,7 +1,7 @@
 export interface ICandidateList{
-     ClEnrollmentNo :string
-     ClName :string
-     ClReqNo :number
-     ClPracticalDone : boolean
-     ClTheoryDeone :boolean
+     clEnrollmentNo :string
+     clName :string
+     clReqNo :number
+     clPracticalDone : boolean
+     clTheoryDeone :boolean
 }

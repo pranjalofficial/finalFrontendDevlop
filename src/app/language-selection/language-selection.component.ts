@@ -1,22 +1,23 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReqConnService } from '../req-conn.service';
 import { AuthService } from '../auth.service';
+import { strictEqual } from 'assert';
 import { IInformation } from '../Interfaces/IInformation';
 
 @Component({
-  selector: 'app-batch-info',
-  templateUrl: './batch-info.component.html',
-  styleUrls: ['./batch-info.component.css']
+  selector: 'app-language-selection',
+  templateUrl: './language-selection.component.html',
+  styleUrls: ['./language-selection.component.css']
 })
-export class BatchInfoComponent implements OnInit {
+export class LanguageSelectionComponent implements OnInit {
+
   loginForm: FormGroup;
   loading = false;
   submitted = false;
   returnUrl: string;
   error = '';
-
   batchInfo:IInformation={
     asId :null,
      asContactPerson:null, 
@@ -32,20 +33,30 @@ export class BatchInfoComponent implements OnInit {
   constructor(private route: Router,private formBuilder: FormBuilder,private reqData:ReqConnService,private auth:AuthService) { }
 
   ngOnInit() {
+    debugger
     this.loginForm = this.formBuilder.group({});
     this.batchInfo = this.auth.batch;
-   this.auth.requestData(this.auth.rId);
+    console.log(this.batchInfo);
   }
-  onSubmit(){
-    this.submitted = true;
 
-        // stop here if form is invalid
-        if (this.loginForm.invalid) {
-            return;
-        }
+  
 
-        this.loading = true;
-    this.route.navigate(['candidate-List']);
+  hindi(){
+    
+    this.auth.language('Hindi');
+    this.route.navigate(['batch-info']);
+  }
+  english(){
+    this.auth.language('English');
+    this.route.navigate(['batch-info']);
+  }
+  tamil(){
+    this.auth.language('Tamil');
+    this.route.navigate(['batch-info']);
+  }
+  bangla(){
+    this.auth.language('Bangla');
+    this.route.navigate(['batch-info']);
   }
 
 }

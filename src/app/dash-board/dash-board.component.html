@@ -12,14 +12,14 @@
 default/'': use the queryParams only
             </p>
             <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-                <button class="btn btn-primary">
+                <button class="btn btn-primary" [disabled]="candidateTable.clPracticalDone != true" >
                     <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
                     Theory
                 </button>
                 <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
             </form>
             <form [formGroup]="loginForm" (ngSubmit)="onPractical()" style="margin-top: 4px;">
-                <button class="btn btn-dark">
+                <button class="btn btn-dark" [disabled]="candidateTable.clPracticalDone != true" >
                     <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
                     Practical
                 </button>

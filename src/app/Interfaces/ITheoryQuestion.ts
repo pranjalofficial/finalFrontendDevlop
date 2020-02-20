@@ -8,4 +8,5 @@ export interface ITheeoryQuestions{
           tqCorrectAnswer:number 
           tqMarks :number
           tqVersionOfQb :number
+          tqLanguage:string
 }

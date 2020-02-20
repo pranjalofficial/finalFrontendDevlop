@@ -6,12 +6,17 @@ import { CandidateListComponent } from './candidate-list/candidate-list.componen
 import { DashBoardComponent } from './dash-board/dash-board.component';
 import { TheoryExamComponent } from './theory-exam/theory-exam.component';
 import { PracticalExamComponent } from './practical-exam/practical-exam.component';
+import { LanguageSelectionComponent } from './language-selection/language-selection.component';
 
 
 const routes: Routes = [
   {
     path:'home',
     component:HomePageComponent
+  },
+  {
+    path:'language',
+    component:LanguageSelectionComponent
   },
   {
     path:'batch-info',

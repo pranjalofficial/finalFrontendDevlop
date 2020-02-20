@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import { ICandidateList } from '../Interfaces/ICandidateList';
 
 @Component({
   selector: 'app-dash-board',
@@ -16,13 +17,16 @@ export class DashBoardComponent implements OnInit {
   error = '';
   num:number;
   str:string;
-  constructor(private formBuilder:FormBuilder,private route:Router,private auth:AuthService) { }
+  constructor(private formBuilder:FormBuilder,private route:Router,public auth:AuthService) { }
   
   candidateID:string;
+  candidateTable:ICandidateList=null;
 
   ngOnInit() {
+    debugger
     this.loginForm = this.formBuilder.group({});
     this.candidateID = this.auth.candidateID;
+    this.candidateTable = this.auth.candidateList[this.auth.candidateID.indexOf(this.auth.candidateID)];
   }
 
   onSubmit(){

@@ -35,7 +35,7 @@ export class HomePageComponent implements OnInit {
 
         this.loading = true;
         this.auth.requestId(this.f.requestID.value);
-        this.route.navigate(['batch-info']);
+        this.route.navigate(['language']);
         //this.auth.initialLogin(this.f.username.value);
   }
 

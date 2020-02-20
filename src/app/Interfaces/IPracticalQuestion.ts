@@ -5,4 +5,5 @@ export interface IPracticalQuestions{
      pqType :string
      pqMarks : number
      pqVersionOfQb : number
+     pqLang:string
 }
